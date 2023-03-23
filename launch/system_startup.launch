@@ -1,0 +1,20 @@
+
+<!--
+Top level launch file for the ASV. 
+-->
+
+
+<launch>
+	<arg name="record_data" default="false"/>
+
+	<include file="$(find sensor_launch_pkg)/launch/realsense_camera.launch"/>
+	<include file="$(find sensor_launch_pkg)/launch/pixhawk.launch"/>
+	<include file="$(find sensor_launch_pkg)/launch/lidar.launch"/>
+
+	<!-- Launch navigation nodes-->
+	<include file="$(find navigation_pkg)/launch/prop_finder.launch"/>
+
+	<include file="$(find data_recording_pkg)/launch/data_recording.launch" if="$(arg record_data)"/>
+
+ </launch>
+
